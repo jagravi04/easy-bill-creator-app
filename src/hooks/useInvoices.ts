@@ -2,14 +2,14 @@
 import { useState } from 'react';
 import { Invoice } from '@/types/invoice';
 
-// Mock data for demonstration
+// Mock data for demonstration with INR amounts
 const mockInvoices: Invoice[] = [
   {
     id: '1',
     invoiceNumber: 'INV-001',
     clientName: 'Acme Corporation',
     clientEmail: 'contact@acme.com',
-    clientAddress: '123 Business St, City, State 12345',
+    clientAddress: '123 Business St, Mumbai, Maharashtra 400001',
     issueDate: '2024-01-15',
     dueDate: '2024-02-15',
     items: [
@@ -17,13 +17,13 @@ const mockInvoices: Invoice[] = [
         id: '1',
         description: 'Web Development Services',
         quantity: 40,
-        rate: 75,
-        amount: 3000
+        rate: 6250,
+        amount: 250000
       }
     ],
-    subtotal: 3000,
-    tax: 240,
-    total: 3240,
+    subtotal: 250000,
+    tax: 45000,
+    total: 295000,
     status: 'sent',
     notes: 'Thank you for your business!'
   },
@@ -32,7 +32,7 @@ const mockInvoices: Invoice[] = [
     invoiceNumber: 'INV-002',
     clientName: 'Tech Solutions Inc',
     clientEmail: 'billing@techsolutions.com',
-    clientAddress: '456 Tech Ave, Innovation City, State 67890',
+    clientAddress: '456 Tech Ave, Bangalore, Karnataka 560001',
     issueDate: '2024-01-20',
     dueDate: '2024-02-20',
     items: [
@@ -40,13 +40,13 @@ const mockInvoices: Invoice[] = [
         id: '1',
         description: 'UI/UX Design',
         quantity: 20,
-        rate: 85,
-        amount: 1700
+        rate: 7083,
+        amount: 141660
       }
     ],
-    subtotal: 1700,
-    tax: 136,
-    total: 1836,
+    subtotal: 141660,
+    tax: 25499,
+    total: 167159,
     status: 'paid'
   }
 ];

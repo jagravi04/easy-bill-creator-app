@@ -31,6 +31,10 @@ export function Dashboard({ invoices, onNavigate }: DashboardProps) {
     }
   };
 
+  const formatCurrency = (amount: number) => {
+    return `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+  };
+
   const recentInvoices = invoices.slice(0, 5);
 
   return (
@@ -49,7 +53,7 @@ export function Dashboard({ invoices, onNavigate }: DashboardProps) {
             <DollarSign className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${totalRevenue.toLocaleString()}</div>
+            <div className="text-2xl font-bold">{formatCurrency(totalRevenue)}</div>
             <p className="text-xs text-muted-foreground">From paid invoices</p>
           </CardContent>
         </Card>
@@ -60,7 +64,7 @@ export function Dashboard({ invoices, onNavigate }: DashboardProps) {
             <Clock className="h-4 w-4 text-muted-foreground" />
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold">${pendingAmount.toLocaleString()}</div>
+            <div className="text-2xl font-bold">{formatCurrency(pendingAmount)}</div>
             <p className="text-xs text-muted-foreground">Awaiting payment</p>
           </CardContent>
         </Card>
@@ -109,7 +113,7 @@ export function Dashboard({ invoices, onNavigate }: DashboardProps) {
                 
                 <div className="flex items-center space-x-4">
                   <div className="text-right">
-                    <p className="font-medium">${invoice.total.toLocaleString()}</p>
+                    <p className="font-medium">{formatCurrency(invoice.total)}</p>
                     <p className="text-sm text-gray-600">Due: {invoice.dueDate}</p>
                   </div>
                   

@@ -37,6 +37,10 @@ export function InvoiceList({ invoices, onNavigate, onDeleteInvoice }: InvoiceLi
     }
   };
 
+  const formatCurrency = (amount: number) => {
+    return `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: 0, maximumFractionDigits: 0 })}`;
+  };
+
   return (
     <div className="space-y-6">
       <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
@@ -108,7 +112,7 @@ export function InvoiceList({ invoices, onNavigate, onDeleteInvoice }: InvoiceLi
                       <td className="py-3 px-4">{invoice.clientName}</td>
                       <td className="py-3 px-4">{invoice.issueDate}</td>
                       <td className="py-3 px-4">{invoice.dueDate}</td>
-                      <td className="py-3 px-4 font-medium">${invoice.total.toLocaleString()}</td>
+                      <td className="py-3 px-4 font-medium">{formatCurrency(invoice.total)}</td>
                       <td className="py-3 px-4">
                         <Badge className={getStatusColor(invoice.status)}>
                           {invoice.status}

@@ -67,8 +67,12 @@ export function CreateInvoice({ onCreateInvoice, onNavigate, existingInvoice }: 
   };
 
   const subtotal = items.reduce((sum, item) => sum + item.amount, 0);
-  const tax = subtotal * 0.08; // 8% tax
+  const tax = subtotal * 0.18; // 18% GST
   const total = subtotal + tax;
+
+  const formatCurrency = (amount: number) => {
+    return `₹${amount.toFixed(2)}`;
+  };
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
@@ -237,7 +241,7 @@ export function CreateInvoice({ onCreateInvoice, onNavigate, existingInvoice }: 
                   </div>
                   
                   <div className="md:col-span-2">
-                    <Label>Rate ($)</Label>
+                    <Label>Rate (₹)</Label>
                     <Input
                       type="number"
                       value={item.rate}
@@ -248,7 +252,7 @@ export function CreateInvoice({ onCreateInvoice, onNavigate, existingInvoice }: 
                   </div>
                   
                   <div className="md:col-span-2">
-                    <Label>Amount ($)</Label>
+                    <Label>Amount (₹)</Label>
                     <Input
                       value={item.amount.toFixed(2)}
                       readOnly
@@ -293,15 +297,15 @@ export function CreateInvoice({ onCreateInvoice, onNavigate, existingInvoice }: 
             <div className="space-y-2 max-w-sm ml-auto">
               <div className="flex justify-between">
                 <span>Subtotal:</span>
-                <span>${subtotal.toFixed(2)}</span>
+                <span>{formatCurrency(subtotal)}</span>
               </div>
               <div className="flex justify-between">
-                <span>Tax (8%):</span>
-                <span>${tax.toFixed(2)}</span>
+                <span>GST (18%):</span>
+                <span>{formatCurrency(tax)}</span>
               </div>
               <div className="flex justify-between font-bold text-lg border-t pt-2">
                 <span>Total:</span>
-                <span>${total.toFixed(2)}</span>
+                <span>{formatCurrency(total)}</span>
               </div>
             </div>
           </CardContent>

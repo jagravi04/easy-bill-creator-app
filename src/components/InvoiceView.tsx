@@ -25,6 +25,10 @@ export function InvoiceView({ invoice, onNavigate }: InvoiceViewProps) {
     window.print();
   };
 
+  const formatCurrency = (amount: number) => {
+    return `₹${amount.toLocaleString('en-IN', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+  };
+
   return (
     <div className="space-y-6">
       {/* Header */}
@@ -70,9 +74,9 @@ export function InvoiceView({ invoice, onNavigate }: InvoiceViewProps) {
               <h2 className="text-2xl font-bold text-gray-900 mb-4">InvoicePro</h2>
               <div className="text-sm text-gray-600">
                 <p>123 Business Street</p>
-                <p>Business City, State 12345</p>
+                <p>Business City, Maharashtra 400001</p>
                 <p>contact@invoicepro.com</p>
-                <p>(555) 123-4567</p>
+                <p>+91 98765 43210</p>
               </div>
             </div>
           </div>
@@ -131,8 +135,8 @@ export function InvoiceView({ invoice, onNavigate }: InvoiceViewProps) {
                     <tr key={item.id} className="border-b border-gray-200">
                       <td className="py-3 px-2">{item.description}</td>
                       <td className="text-center py-3 px-2">{item.quantity}</td>
-                      <td className="text-right py-3 px-2">${item.rate.toFixed(2)}</td>
-                      <td className="text-right py-3 px-2 font-medium">${item.amount.toFixed(2)}</td>
+                      <td className="text-right py-3 px-2">{formatCurrency(item.rate)}</td>
+                      <td className="text-right py-3 px-2 font-medium">{formatCurrency(item.amount)}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -146,16 +150,16 @@ export function InvoiceView({ invoice, onNavigate }: InvoiceViewProps) {
               <div className="space-y-2">
                 <div className="flex justify-between">
                   <span>Subtotal:</span>
-                  <span>${invoice.subtotal.toFixed(2)}</span>
+                  <span>{formatCurrency(invoice.subtotal)}</span>
                 </div>
                 <div className="flex justify-between">
-                  <span>Tax (8%):</span>
-                  <span>${invoice.tax.toFixed(2)}</span>
+                  <span>GST (18%):</span>
+                  <span>{formatCurrency(invoice.tax)}</span>
                 </div>
                 <Separator />
                 <div className="flex justify-between font-bold text-lg">
                   <span>Total:</span>
-                  <span>${invoice.total.toFixed(2)}</span>
+                  <span>{formatCurrency(invoice.total)}</span>
                 </div>
               </div>
             </div>
